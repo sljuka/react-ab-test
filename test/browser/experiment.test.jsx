@@ -240,4 +240,28 @@ describe('Experiment', function () {
       expect(wrapper.find(`#variant-${chosenVariant}`).exists()).toBe(true);
     }
   });
+
+  it('should not not cause an infinite rendering loop when calling setState', () => {
+    const userIdentifier = UUID();
+    const experimentName = UUID();
+    const spy = jest.spyOn(console, 'error');
+    const App = () => {
+      const [counter, setCounter] = React.useState(0);
+      return (
+        <>
+          <Experiment name={experimentName} userIdentifier={userIdentifier}>
+            <Variant name="A">A</Variant>
+            <Variant name="B">B</Variant>
+          </Experiment>
+
+          <button onClick={() => setCounter(counter + 1)}>
+            Re-render ({counter})
+          </button>
+        </>
+      );
+    };
+    const wrapper = mount(<App />);
+    wrapper.find('button').simulate('click');
+    expect(spy).not.toHaveBeenCalled();
+  });
 });
