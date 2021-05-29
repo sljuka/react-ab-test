@@ -25,7 +25,7 @@ const useExperiment = (experimentName, userIdentifier, defaultVariantName) => {
     const variantListener = emitter.addActiveVariantListener(
       experimentName,
       (name, variant) => {
-        if (name === experimentName) {
+        if (name === experimentName && variant !== activeVariant) {
           setActiveVariant(variant);
         }
       }
