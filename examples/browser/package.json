@@ -1,21 +1,32 @@
 {
-  "name": "example-browser",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "name": "browser",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "webpack-dev-server": "*"
+    "react-scripts": "4.0.3"
   },
-  "devDependencies": {},
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.example.config.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pushtell/react-ab-test.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "",
-  "license": "MIT"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
