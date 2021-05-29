@@ -41,7 +41,9 @@
     "eslint-plugin-react": "^7.23.2",
     "fbemitter": "^3.0.0",
     "fbjs": "^3.0.0",
+    "husky": ">=6",
     "jest": "^27.0.1",
+    "lint-staged": ">=10",
     "node-localstorage": "^2.1.6",
     "prettier": "^2.3.0",
     "react": "^17.0.2",
@@ -53,7 +55,8 @@
     "build": "doctoc . --github --title '<h1>Table of Contents</h1>'; babel src --out-dir lib;",
     "format": "prettier --write **/*.{js,jsx}",
     "lint": "eslint --ignore-path .gitignore .",
-    "lint:fix": "eslint --ignore-path .gitignore --fix ."
+    "lint:fix": "eslint --ignore-path .gitignore --fix .",
+    "prepare": "husky install"
   },
   "jest": {
     "resetMocks": true,
@@ -79,5 +82,9 @@
   "bugs": {
     "url": "https://github.com/marvelapp/react-ab-test/issues"
   },
-  "homepage": "https://github.com/marvelapp/react-ab-test#readme"
+  "homepage": "https://github.com/marvelapp/react-ab-test#readme",
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,jsx}": "prettier --write"
+  }
 }
