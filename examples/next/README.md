@@ -11,7 +11,7 @@
 1. Clone the [react-ab-test repository](https://github.com/marvelapp/react-ab-test)
 2. Run `yarn install` to install the library dependencies
 3. Run `yarn build` to build the library 
-3. Change to the [./example/isomorphic](https://github.com/marvelapp/react-ab-test/tree/master/example/isomorphic) directory
+3. Change to the [./example/next](https://github.com/marvelapp/react-ab-test/tree/master/example/next) directory
 4. Run `yarn install` to install the example dependencies
-3. Run `yarn start` to start the dev server
-4. Open [http://localhost:8080](http://localhost:8080) in your browser
+3. Run `yarn dev` to start the dev server
+4. Open [http://localhost:3000](http://localhost:3000) in your browser

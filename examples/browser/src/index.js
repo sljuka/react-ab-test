@@ -6,7 +6,7 @@ import './index.css';
 import Experiment from './lib/Experiment';
 import Variant from './lib/Variant';
 import experimentDebugger from './lib/debugger';
-// Normally the library would imported with:
+// Normally the library would be imported with:
 // import { Experiment, Variant, experimentDebugger } from '@marvelapp/react-ab-test
 
 experimentDebugger.enable();
