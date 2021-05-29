@@ -30,3 +30,6 @@ package-lock.json
 
 # Metadata
 .DS_Store
+
+# Eslint
+.eslintcache
