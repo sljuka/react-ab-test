@@ -54,7 +54,7 @@
   "scripts": {
     "test": "jest",
     "build": "doctoc README.md --github --title '<h1>Table of Contents</h1>'; babel src --out-dir lib;",
-    "format": "prettier --write **/*.{js,jsx}",
+    "format": "prettier --write '**/*.{js,jsx}'",
     "format:check": "yarn format --check",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
