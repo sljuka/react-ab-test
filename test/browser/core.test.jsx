@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import UUID from 'uuid/v4';
+import { v4 as UUID } from 'uuid';;
 
 import CoreExperiment from '../../src/CoreExperiment.jsx';
 import Variant from '../../src/Variant.jsx';
@@ -26,7 +26,7 @@ describe('Core Experiment', () => {
 
   it('should error if invalid children exist.', () => {
     // Suppress React's error boundary logs
-    spyOn(console, 'error');
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     expect(() => {
       mount(
         <CoreExperiment name={UUID()} defaultVariantName="A">

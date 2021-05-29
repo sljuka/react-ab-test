@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UUID from 'uuid/v4';
+import { v4 as UUID } from 'uuid';;
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 

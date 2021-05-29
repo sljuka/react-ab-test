@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UUID from 'uuid/v4';
+import { v4 as UUID } from 'uuid';;
 import { mount } from 'enzyme';
 
 import Experiment from '../../src/Experiment.jsx';
@@ -88,7 +88,7 @@ describe('Experiment', function() {
     );
 
     // Suppress React's error boundary logs
-    spyOn(console, 'error');
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     expect(() =>
       mount(
         <Experiment name={experimentName} value="A">
@@ -139,7 +139,7 @@ describe('Experiment', function() {
     );
   });
 
-  it('should error if a variant is added to an experiment after variants were defined', () => {
+  it.only('should error if a variant is added to an experiment after variants were defined', () => {
     const experimentName = UUID();
     emitter.defineVariants(experimentName, ['A', 'B', 'C']);
 
@@ -159,8 +159,7 @@ describe('Experiment', function() {
     );
 
     // Suppress React's error boundary logs
-
-    spyOn(console, 'error');
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     expect(() =>
       mount(
         <Experiment name={experimentName}>
@@ -186,12 +185,12 @@ describe('Experiment', function() {
     mount(
       <Experiment name={experimentName}>
         <Variant name="A">
-          <a id="variant-a" href="#A" onClick={this.onClickVariant}>
+          <a id="variant-a" href="#A">
             A
           </a>
         </Variant>
         <Variant name="B">
-          <a id="variant-b" href="#B" onClick={this.onClickVariant}>
+          <a id="variant-b" href="#B">
             B
           </a>
         </Variant>
