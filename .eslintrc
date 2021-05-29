@@ -4,20 +4,18 @@
     "browser": true,
     "mocha": true,
     "node": true,
-    "es6": true,
+    "es6": true
   },
   "globals": {
     "assert": true
   },
-  "plugins": [
-    "babel",
-    "react",
-    "promise"
-  ],
+  "plugins": ["babel", "react", "promise", "jest"],
+  "extends": ["plugin:jest/recommended"],
   "rules": {
     "camelcase": 0,
     "no-sequences": 0,
     "no-loop-func": 2,
-    "require-yield": 2
+    "require-yield": 2,
+    "jest/valid-expect": "off"
   }
 }
