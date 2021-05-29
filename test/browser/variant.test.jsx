@@ -17,12 +17,7 @@ describe('Variant', () => {
       </CoreExperiment>
     );
 
-    expect(
-      wrapper
-        .find(Variant)
-        .at(0)
-        .text()
-    ).toBe(variantTextA);
+    expect(wrapper.find(Variant).at(0).text()).toBe(variantTextA);
   });
 
   it('should render components', () => {

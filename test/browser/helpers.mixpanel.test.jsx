@@ -1,8 +1,8 @@
 import React from 'react';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
 
-import CoreExperiment from "../../src/CoreExperiment.jsx";
+import CoreExperiment from '../../src/CoreExperiment.jsx';
 import Variant from '../../src/Variant.jsx';
 import emitter from '../../src/emitter.jsx';
 import mixpanelHelper from '../../src/helpers/mixpanel.jsx';

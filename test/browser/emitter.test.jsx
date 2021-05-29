@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
@@ -61,12 +61,12 @@ describe('Emitter', () => {
   it('should emit when a variant wins.', () => {
     const experimentName = UUID();
     let winningVariantName = null;
-    let winCallback = function(experimentName, variantName) {
+    let winCallback = function (experimentName, variantName) {
       winningVariantName = variantName;
     };
     let experimentNameGlobal = null;
     let winningVariantNameGlobal = null;
-    let winCallbackGlobal = function(experimentName, variantName) {
+    let winCallbackGlobal = function (experimentName, variantName) {
       experimentNameGlobal = experimentName;
       winningVariantNameGlobal = variantName;
     };
@@ -98,12 +98,12 @@ describe('Emitter', () => {
     let experimentName = UUID();
 
     let winningVariantName = null;
-    let winCallback = function(experimentName, variantName) {
+    let winCallback = function (experimentName, variantName) {
       winningVariantName = variantName;
     };
     let experimentNameGlobal = null;
     let winningVariantNameGlobal = null;
-    let winCallbackGlobal = function(experimentName, variantName) {
+    let winCallbackGlobal = function (experimentName, variantName) {
       experimentNameGlobal = experimentName;
       winningVariantNameGlobal = variantName;
     };
@@ -111,7 +111,7 @@ describe('Emitter', () => {
     const winSubscriptionGlobal = emitter.addWinListener(winCallbackGlobal);
 
     class App extends Component {
-      onClickVariant = e => {
+      onClickVariant = (e) => {
         this.experimentRef.current.win();
       };
 
@@ -119,7 +119,11 @@ describe('Emitter', () => {
 
       render() {
         return (
-          <Experiment ref={this.experimentRef} name={experimentName} defaultVariantName="A">
+          <Experiment
+            ref={this.experimentRef}
+            name={experimentName}
+            defaultVariantName="A"
+          >
             <Variant name="A">
               <a id="variant-a" href="#A" onClick={this.onClickVariant}>
                 A
@@ -149,12 +153,12 @@ describe('Emitter', () => {
   it('should emit when a variant is chosen.', () => {
     const experimentName = UUID();
     let activeVariantName = null;
-    const activeVariantCallback = function(experimentName, variantName) {
+    const activeVariantCallback = function (experimentName, variantName) {
       activeVariantName = variantName;
     };
     let experimentNameGlobal = null;
     let activeVariantNameGlobal = null;
-    const activeVariantCallbackGlobal = function(experimentName, variantName) {
+    const activeVariantCallbackGlobal = function (experimentName, variantName) {
       experimentNameGlobal = experimentName;
       activeVariantNameGlobal = variantName;
     };
@@ -169,7 +173,11 @@ describe('Emitter', () => {
     const experimentRef = React.createRef();
 
     const wrapper = mount(
-      <Experiment ref={experimentRef} name={experimentName} defaultVariantName="A">
+      <Experiment
+        ref={experimentRef}
+        name={experimentName}
+        defaultVariantName="A"
+      >
         <Variant name="A">
           <a id="variant-a" href="#A">
             A
@@ -196,7 +204,11 @@ describe('Emitter', () => {
     const experimentRef = React.createRef();
 
     const wrapper = mount(
-      <Experiment ref={experimentRef} name={experimentName} defaultVariantName="A">
+      <Experiment
+        ref={experimentRef}
+        name={experimentName}
+        defaultVariantName="A"
+      >
         <Variant name="A">
           <a id="variant-a" href="#A">
             A
@@ -231,7 +243,7 @@ describe('Emitter', () => {
     expect(!wrapper.find('#variant-b').exists());
 
     act(() => {
-      emitter.setActiveVariant(experimentName, "B");
+      emitter.setActiveVariant(experimentName, 'B');
     });
 
     expect(!wrapper.find('#variant-a').exists());
@@ -271,7 +283,7 @@ describe('Emitter', () => {
       </div>
     );
 
-    let wrapper = mount(<AppA />)
+    let wrapper = mount(<AppA />);
     expect(emitter.getActiveExperiments()).toEqual({
       [experimentNameA]: {
         A: true,

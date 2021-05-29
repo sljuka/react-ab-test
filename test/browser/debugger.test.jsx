@@ -1,5 +1,5 @@
 import React from 'react';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 import { mount } from 'enzyme';
 
 import CoreExperiment from '../../src/CoreExperiment.jsx';

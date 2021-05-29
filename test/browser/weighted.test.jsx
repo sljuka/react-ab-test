@@ -1,5 +1,5 @@
 import React from 'react';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 import { mount } from 'enzyme';
 
 import Experiment from '../../src/Experiment.jsx';
@@ -22,7 +22,7 @@ describe('Weighted Experiment', () => {
       variantWeights.push(Math.floor(Math.random() * 100));
     }
 
-    variantNames.forEach(variantName => {
+    variantNames.forEach((variantName) => {
       playCount[variantName] = 0;
     });
 
@@ -37,7 +37,7 @@ describe('Weighted Experiment', () => {
     const App = () => {
       return (
         <Experiment name={experimentName}>
-          {variantNames.map(name => {
+          {variantNames.map((name) => {
             return (
               <Variant key={name} name={name}>
                 <div id={'variant-' + name} />
@@ -61,7 +61,7 @@ describe('Weighted Experiment', () => {
     }
 
     const playSum = Object.keys(playCount)
-      .map(variantName => playCount[variantName])
+      .map((variantName) => playCount[variantName])
       .reduce(add, 0);
 
     const playCountToWeightRatios = variantNames.map((variantName, index) => {
@@ -73,7 +73,7 @@ describe('Weighted Experiment', () => {
       playCountToWeightRatios.reduce(add, 0) / playCountToWeightRatios.length;
 
     const ratioVariance = playCountToWeightRatios
-      .map(ratio => Math.pow(ratioMean - ratio, 2))
+      .map((ratio) => Math.pow(ratioMean - ratio, 2))
       .reduce(add, 0);
 
     const ratioStandardDeviation = Math.sqrt(ratioVariance);

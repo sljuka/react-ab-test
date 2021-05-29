@@ -4,12 +4,12 @@ import ReactDOMServer from 'react-dom/server';
 import Experiment from '../../src/Experiment.jsx';
 import Variant from '../../src/Variant.jsx';
 import emitter from '../../src/emitter.jsx';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 
 const renderApp = (experimentName, variantNames, userIdentifier) => {
   return () => (
     <Experiment name={experimentName} userIdentifier={userIdentifier}>
-      {variantNames.map(name => {
+      {variantNames.map((name) => {
         return (
           <Variant key={name} name={name}>
             <div id={'variant-' + name} />

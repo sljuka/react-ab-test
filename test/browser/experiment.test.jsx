@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { v4 as UUID } from 'uuid';;
+import { v4 as UUID } from 'uuid';
 import { mount } from 'enzyme';
 
 import Experiment from '../../src/Experiment.jsx';
 import Variant from '../../src/Variant.jsx';
 import emitter from '../../src/emitter.jsx';
 
-describe('Experiment', function() {
-  afterEach(function() {
+describe('Experiment', function () {
+  afterEach(function () {
     emitter._reset();
   });
 
@@ -21,7 +21,7 @@ describe('Experiment', function() {
 
     const wrapper = mount(
       <Experiment name={experimentName}>
-        {variantNames.map(name => {
+        {variantNames.map((name) => {
           return (
             <Variant key={name} name={name}>
               <div id={'variant-' + name} />
@@ -45,7 +45,7 @@ describe('Experiment', function() {
 
     const AppWithDefaultVariantName = () => (
       <Experiment name={experimentName} defaultVariantName={defaultVariantName}>
-        {variantNames.map(name => {
+        {variantNames.map((name) => {
           return (
             <Variant key={name} name={name}>
               <div id={'variant-' + name} />
@@ -57,7 +57,7 @@ describe('Experiment', function() {
 
     const AppWithoutDefaultVariantName = () => (
       <Experiment name={experimentName}>
-        {variantNames.map(name => {
+        {variantNames.map((name) => {
           return (
             <Variant key={name} name={name}>
               <div id={'variant-' + name} />
@@ -106,6 +106,7 @@ describe('Experiment', function() {
   it('should not error if variants are added to a experiment after a variant was selected if variants were defined', () => {
     const experimentName = UUID();
     emitter.defineVariants(experimentName, ['A', 'B', 'C', 'D']);
+    const spy = jest.spyOn(console, 'error');
 
     let experimentRef = React.createRef();
     mount(
@@ -122,6 +123,7 @@ describe('Experiment', function() {
         </Variant>
       </Experiment>
     );
+    expect(spy).not.toHaveBeenCalled();
 
     mount(
       <Experiment ref={experimentRef} name={experimentName}>
@@ -137,9 +139,10 @@ describe('Experiment', function() {
         </Variant>
       </Experiment>
     );
+    expect(spy).not.toHaveBeenCalled();
   });
 
-  it.only('should error if a variant is added to an experiment after variants were defined', () => {
+  it('should error if a variant is added to an experiment after variants were defined', () => {
     const experimentName = UUID();
     emitter.defineVariants(experimentName, ['A', 'B', 'C']);
 
@@ -181,6 +184,7 @@ describe('Experiment', function() {
   it('should not error if an older test variant is set', () => {
     const experimentName = UUID();
     localStorage.setItem('PUSHTELL-' + experimentName, 'C');
+    const spy = jest.spyOn(console, 'error');
 
     mount(
       <Experiment name={experimentName}>
@@ -196,6 +200,8 @@ describe('Experiment', function() {
         </Variant>
       </Experiment>
     );
+
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should choose the same variant when a user identifier is defined', () => {
@@ -208,7 +214,7 @@ describe('Experiment', function() {
 
     const App = () => (
       <Experiment name={experimentName} userIdentifier={userIdentifier}>
-        {variantNames.map(name => {
+        {variantNames.map((name) => {
           return (
             <Variant key={name} name={name}>
               <div id={'variant-' + name} />
@@ -220,7 +226,7 @@ describe('Experiment', function() {
 
     // TODO: use spies
     let chosenVariant;
-    emitter.once('play', function(experimentName, variantName) {
+    emitter.once('play', function (experimentName, variantName) {
       chosenVariant = variantName;
     });
 
