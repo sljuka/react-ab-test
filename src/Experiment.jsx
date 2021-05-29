@@ -1,10 +1,14 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CoreExperiment from "./CoreExperiment";
-import emitter from "./emitter";
+import CoreExperiment from './CoreExperiment';
+import emitter from './emitter';
 import store from './store';
 
-emitter.addActiveVariantListener(function (experimentName, variantName, skipSave) {
+emitter.addActiveVariantListener(function (
+  experimentName,
+  variantName,
+  skipSave
+) {
   if (skipSave) {
     return;
   }
@@ -16,10 +20,10 @@ export default class Experiment extends Component {
     name: PropTypes.string.isRequired,
     defaultVariantName: PropTypes.string,
     userIdentifier: PropTypes.string,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
-  static displayName = "Pushtell.Experiment";
+  static displayName = 'Pushtell.Experiment';
 
   win = () => {
     emitter.emitWin(this.props.name);

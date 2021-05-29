@@ -43,6 +43,7 @@
     "fbjs": "^3.0.0",
     "jest": "^27.0.1",
     "node-localstorage": "^2.1.6",
+    "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "uuid": "^8.3.2"
@@ -50,6 +51,7 @@
   "scripts": {
     "test": "jest",
     "build": "doctoc . --github --title '<h1>Table of Contents</h1>'; babel src --out-dir lib;",
+    "format": "prettier --write **/*.{js,jsx}",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix ."
   },
@@ -64,6 +66,9 @@
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://example.com"
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,13 @@
 let store;
 
 const noopStore = {
-  getItem: function() {},
-  setItem: function() {}
+  getItem: function () {},
+  setItem: function () {},
 };
 
-if (typeof window !== "undefined" && "localStorage" in window) {
+if (typeof window !== 'undefined' && 'localStorage' in window) {
   try {
-    let key = "__pushtell_react__";
+    let key = '__pushtell_react__';
     window.localStorage.setItem(key, key);
     if (window.localStorage.getItem(key) !== key) {
       store = noopStore;

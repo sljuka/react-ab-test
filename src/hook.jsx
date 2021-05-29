@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import emitter from "./emitter";
+import { useEffect, useState } from 'react';
+import emitter from './emitter';
 
 const selectVariant = (currentVariant) => (variants, fallback) => {
   if (currentVariant in variants) {
@@ -8,11 +8,7 @@ const selectVariant = (currentVariant) => (variants, fallback) => {
   return fallback;
 };
 
-const useExperiment = (
-  experimentName,
-  userIdentifier,
-  defaultVariantName
-) => {
+const useExperiment = (experimentName, userIdentifier, defaultVariantName) => {
   const [activeVariant, setActiveVariant] = useState(
     emitter.calculateActiveVariant(
       experimentName,
@@ -44,7 +40,7 @@ const useExperiment = (
     experimentName,
     activeVariant,
     emitWin: () => emitter.emitWin(experimentName),
-    selectVariant: selectVariant(activeVariant)
+    selectVariant: selectVariant(activeVariant),
   };
 };
 

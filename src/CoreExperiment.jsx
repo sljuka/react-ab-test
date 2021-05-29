@@ -8,18 +8,18 @@ const filterVariants = (name, children) => {
   React.Children.forEach(children, (element) => {
     if (
       !React.isValidElement(element) ||
-      element.type.displayName !== "Pushtell.Variant"
+      element.type.displayName !== 'Pushtell.Variant'
     ) {
       let error = new Error(
-        "Pushtell Experiment children must be Pushtell Variant components."
+        'Pushtell Experiment children must be Pushtell Variant components.'
       );
-      error.type = "PUSHTELL_INVALID_CHILD";
+      error.type = 'PUSHTELL_INVALID_CHILD';
       throw error;
     }
     variants[element.props.name] = element;
     emitter.addExperimentVariant(name, element.props.name);
   });
-  emitter.emit("variants-loaded", name);
+  emitter.emit('variants-loaded', name);
   return variants;
 };
 
@@ -41,7 +41,7 @@ CoreExperiment.propTypes = {
   name: PropTypes.string.isRequired,
   userIdentifier: PropTypes.string,
   defaultVariantName: PropTypes.string,
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 export default CoreExperiment;

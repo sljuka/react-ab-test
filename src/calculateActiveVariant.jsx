@@ -1,6 +1,6 @@
-import crc32 from "fbjs/lib/crc32";
-import emitter from "./emitter";
-import store from "./store";
+import crc32 from 'fbjs/lib/crc32';
+import emitter from './emitter';
+import store from './store';
 
 const calculateVariant = (experimentName, userIdentifier) => {
   /*
@@ -31,7 +31,7 @@ const calculateVariant = (experimentName, userIdentifier) => {
   }, 0);
   // A random number between 0 and weightSum
   let weightedIndex =
-    typeof userIdentifier === "string"
+    typeof userIdentifier === 'string'
       ? Math.abs(crc32(userIdentifier) % weightSum)
       : Math.floor(Math.random() * weightSum);
   // Iterate through the sorted weights, and deduct each from the weightedIndex.
@@ -50,19 +50,19 @@ const calculateVariant = (experimentName, userIdentifier) => {
 };
 
 export default (experimentName, userIdentifier, defaultVariantName) => {
-  if (typeof userIdentifier === "string") {
+  if (typeof userIdentifier === 'string') {
     return calculateVariant(experimentName, userIdentifier);
   }
   const activeValue = emitter.getActiveVariant(experimentName);
-  if (typeof activeValue === "string") {
+  if (typeof activeValue === 'string') {
     return activeValue;
   }
-  const storedValue = store.getItem("PUSHTELL-" + experimentName);
-  if (typeof storedValue === "string") {
+  const storedValue = store.getItem('PUSHTELL-' + experimentName);
+  if (typeof storedValue === 'string') {
     emitter.setActiveVariant(experimentName, storedValue, true);
     return storedValue;
   }
-  if (typeof defaultVariantName === "string") {
+  if (typeof defaultVariantName === 'string') {
     emitter.setActiveVariant(experimentName, defaultVariantName);
     return defaultVariantName;
   }
