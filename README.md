@@ -60,6 +60,7 @@ Please [★ on GitHub](https://github.com/marvelapp/react-ab-test)!
     - [`emitter.getActiveVariant(experimentName)`](#emittergetactivevariantexperimentname)
     - [`emitter.calculateActiveVariant(experimentName [, userIdentifier, defaultVariantName])`](#emittercalculateactivevariantexperimentname--useridentifier-defaultvariantname)
     - [`emitter.getSortedVariants(experimentName)`](#emittergetsortedvariantsexperimentname)
+    - [`emitter.setCustomDistributionAlgorithm(experimentName)`](#emittersetcustomdistributionalgorithmexperimentname)
   - [`Subscription`](#subscription)
     - [`subscription.remove()`](#subscriptionremove)
   - [`experimentDebugger`](#experimentdebugger)
