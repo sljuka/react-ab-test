@@ -60,7 +60,7 @@ Please [★ on GitHub](https://github.com/marvelapp/react-ab-test)!
     - [`emitter.getActiveVariant(experimentName)`](#emittergetactivevariantexperimentname)
     - [`emitter.calculateActiveVariant(experimentName [, userIdentifier, defaultVariantName])`](#emittercalculateactivevariantexperimentname--useridentifier-defaultvariantname)
     - [`emitter.getSortedVariants(experimentName)`](#emittergetsortedvariantsexperimentname)
-    - [`emitter.setCustomDistributionAlgorithm(experimentName)`](#emittersetcustomdistributionalgorithmexperimentname)
+    - [`emitter.setCustomDistributionAlgorithm(customAlgorithm)`](#emittersetcustomdistributionalgorithmcustomalgorithm)
   - [`Subscription`](#subscription)
     - [`subscription.remove()`](#subscriptionremove)
   - [`experimentDebugger`](#experimentdebugger)
@@ -633,7 +633,7 @@ Returns a sorted array of variant names associated with the experiment.
     * **Type:** `string`
     * **Example:** `"My Example"`
 
-#### `emitter.setCustomDistributionAlgorithm(experimentName)`
+#### `emitter.setCustomDistributionAlgorithm(customAlgorithm)`
 
 Sets a custom function to use for calculating variants overriding the default. This can be usefull
 in cases when variants are expected from 3rd parties or when variants need to be
