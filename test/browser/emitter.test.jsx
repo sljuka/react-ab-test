@@ -320,4 +320,17 @@ describe('Emitter', () => {
     const activeVariant = emitter.calculateActiveVariant(experimentName);
     expect(activeVariant).toEqual(emitter.getActiveVariant(experimentName));
   });
+
+  it('should use custom distribution algorithm when set', () => {
+    const experimentName = UUID();
+    emitter.defineVariants(experimentName, ['A', 'B']);
+    emitter.setCustomDistributionAlgorithm((_experimentName, userIdentifier) =>
+      parseInt(userIdentifier) % 4 === 0 ? 'A' : 'B'
+    );
+    const variants = [...Array(6).keys()].map((userIdentifier) =>
+      emitter.calculateActiveVariant(experimentName, userIdentifier.toString())
+    );
+
+    expect(variants).toEqual(['A', 'B', 'B', 'B', 'A', 'B']);
+  });
 });

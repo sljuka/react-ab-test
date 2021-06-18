@@ -7,6 +7,7 @@ let experimentWeights = {};
 let activeExperiments = {};
 let experimentsWithDefinedVariants = {};
 let playedExperiments = {};
+let customDistributionAlgorithm = undefined;
 
 const emitter = new EventEmitter();
 
@@ -53,6 +54,7 @@ PushtellEventEmitter.prototype._reset = function () {
   activeExperiments = {};
   experimentsWithDefinedVariants = {};
   playedExperiments = {};
+  customDistributionAlgorithm = undefined;
 };
 
 PushtellEventEmitter.prototype.rewind = function () {
@@ -144,6 +146,12 @@ PushtellEventEmitter.prototype.addWinListener = function (
   });
 };
 
+PushtellEventEmitter.prototype.setCustomDistributionAlgorithm = function (
+  customAlgorithm
+) {
+  customDistributionAlgorithm = customAlgorithm;
+};
+
 PushtellEventEmitter.prototype.defineVariants = function (
   experimentName,
   variantNames,
@@ -212,6 +220,14 @@ PushtellEventEmitter.prototype.calculateActiveVariant = function (
   userIdentifier,
   defaultVariantName
 ) {
+  if (customDistributionAlgorithm !== undefined) {
+    return customDistributionAlgorithm(
+      experimentName,
+      userIdentifier,
+      defaultVariantName
+    );
+  }
+
   const variant = calculateActiveVariant(
     experimentName,
     userIdentifier,

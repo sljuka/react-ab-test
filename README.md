@@ -632,6 +632,27 @@ Returns a sorted array of variant names associated with the experiment.
     * **Type:** `string`
     * **Example:** `"My Example"`
 
+#### `emitter.setCustomDistributionAlgorithm(experimentName)`
+
+Sets a custom function to use for calculating variants overriding the default. This can be usefull
+in cases when variants are expected from 3rd parties or when variants need to be
+in sync with other clients using ab test but different distribution algorithm.
+
+- **Return Type:** No return value
+- **Parameters:**
+  - `customAlgorithm` - Function for calculating variant distribution.
+    - **Required**
+    - **Type:** `function`
+    - **Callback Arguments:**
+      - `experimentName` - Name of the experiment.
+        - **Required**
+        - **Type:** `string`
+      - `userIdentifier` - User's value which is used to calculate the variant
+        - **Required**
+        - **Type:** `string`
+      - `defaultVariantName` - Default variant passed from the experiment
+        - **Type:** `string`
+
 ### `Subscription`
 
 Returned by the emitter's add listener methods. More information available in the [facebook/emitter documentation.](https://github.com/facebook/emitter#api-concepts)
